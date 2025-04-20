@@ -1,9 +1,57 @@
 <html>
 <head>
-  <!-- Link the style sheet here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="static/bootstrap.min.css">
+  <style>
+    .banner {
+      padding: 20px;
+      text-align: center;
+    }
+    .card {
+      margin: 20px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .team-card {
+      width: 30%;
+      margin: 10px;
+    }
+    .team-img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .homepage_links {
+      margin-left: 15px;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+<script>
+  const logout = async (e) => {
+    // Include the code for logout here.
+    sessionStorage.removeItem("username");
+    window.location.href = "/";
+  };
+
+  let checkSession = ()=>{
+    let curr_user = sessionStorage.getItem("username");
+
+    if (curr_user && curr_user !== "") {
+      document.getElementById("loginlogout").innerHTML = 
+      '<span class="homepage_links">' + curr_user +'</span>' +
+      '<a class="homepage_links" onclick="logout()" href="/">Logout</a>'
+    } else {
+      document.getElementById("loginlogout").innerHTML = 
+      '<a class="homepage_links" href="/login">Login</a>'+
+      '<a class="homepage_links" href="/register">Register</a>'
+    }
+  }
+</script>
 </head>
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+<body onload="checkSession()">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: darkturquoise; height: 1in;">
     <div class="container-fluid">
       <h2 style="padding-right: 5%;">Dealerships</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,48 +69,51 @@
             <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
           </li>
         </ul>
+        <span class="navbar-text">
+          <div class="loginlink" id="loginlogout"></div>
+        </span>
       </div>
     </div>
   </nav>
-  
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      <!-- Insert header information here -->
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
-        </div>
-      </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
-        </div>
-      </div>
-
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
-        </div>
-      </div>
-    </div>
-    </div>
+  <div class="card" style="width: 80%; margin: 50px auto;">
+    <div class="banner" name="about-header">
+      <h1>About Us</h1>
+      <p>Welcome to Best Cars Dealership, your trusted partner for quality vehicles at competitive prices. 
+         We specialize in both domestic and imported cars, ensuring you find the perfect match for your needs.</p>
     </div>
     
-</div>
+    <div style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap;">
+      <div class="card team-card">
+        <img class="card-img-top team-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300" alt="John Smith">
+        <div class="card-body">
+          <p class="title"><b>John Smith</b></p>
+          <p>Dealership Owner</p>
+          <p class="card-text">With over 15 years in the automotive industry, John ensures our dealership maintains the highest standards.</p>
+          <p>john@bestcars.com</p>
+        </div>
+      </div>
 
+      <div class="card team-card">
+        <img class="card-img-top team-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300" alt="Sarah Johnson">
+        <div class="card-body">
+          <p class="title"><b>Sarah Johnson</b></p>
+          <p>Sales Manager</p>
+          <p class="card-text">Sarah leads our sales team with a customer-first approach, helping you find your dream car.</p>
+          <p>sarah@bestcars.com</p>
+        </div>
+      </div>
+
+      <div class="card team-card">
+        <img class="card-img-top team-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=300" alt="Mike Chen">
+        <div class="card-body">
+          <p class="title"><b>Mike Chen</b></p>
+          <p>Lead Technician</p>
+          <p class="card-text">Mike and his team ensure every vehicle meets our rigorous quality and safety checks.</p>
+          <p>mike@bestcars.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
